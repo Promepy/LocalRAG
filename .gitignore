@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Chroma vector store (regenerated from documents)
+rag/vectorstore/chroma/
+
+# Metadata (regenerated on ingestion)
+rag/metadata/file_index.json
+
+# Sample data (users add their own)
+rag/data/private/*
+rag/data/public/*
+rag/data/mixed/*
+!rag/data/*/.gitkeep
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+*.log
+*.tmp
+commands.txt
