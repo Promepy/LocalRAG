@@ -5,6 +5,7 @@ A **100% local, privacy-first Retrieval-Augmented Generation (RAG) system** that
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-green.svg)
 ![Chroma](https://img.shields.io/badge/Chroma-Vector%20DB-purple.svg)
+![Open WebUI](https://img.shields.io/badge/Open%20WebUI-Compatible-orange.svg)
 
 ---
 
@@ -16,6 +17,7 @@ A **100% local, privacy-first Retrieval-Augmented Generation (RAG) system** that
 - **Source Citations** — Every answer includes document references
 - **Fast Retrieval** — 768-dimensional embeddings with Chroma
 - **Cross-Platform** — Works on macOS and Windows
+- **Open WebUI Integration** — Use with a beautiful chat interface via OpenAI-compatible API
 
 ---
 
@@ -109,8 +111,11 @@ python3 init_chroma.py
 # 7. Run ingestion
 python3 ingest_documents.py
 
-# 8. Start chatting
+# 8. Start chatting (Terminal)
 python3 query_rag.py
+
+# 9. OR start API server (for Open WebUI)
+python3 rag_server.py
 ```
 
 ---
@@ -146,8 +151,11 @@ python init_chroma.py
 # 7. Run ingestion
 python ingest_documents.py
 
-# 8. Start chatting
+# 8. Start chatting (Terminal)
 python query_rag.py
+
+# 9. OR start API server (for Open WebUI)
+python rag_server.py
 ```
 
 > **Note:** For PDF support on Windows, install [Xpdf tools](https://www.xpdfreader.com/download.html) and add to PATH.
@@ -169,7 +177,8 @@ LocalRAG/
 │       └── file_index.json
 ├── init_chroma.py        # Initialize vector store
 ├── ingest_documents.py   # Document ingestion script
-├── query_rag.py          # Interactive chat interface
+├── query_rag.py          # Interactive terminal chat
+├── rag_server.py         # OpenAI-compatible API server
 └── README.md
 ```
 
@@ -205,20 +214,39 @@ the key advantages of local AI are:
 
 ---
 
-## 🚀 Future Extensions
+## 🌐 Open WebUI Integration
 
-Here are suggestions for extending this project:
+Use LocalRAG with [Open WebUI](https://github.com/open-webui/open-webui) for a beautiful chat interface:
+
+### Setup
+
+1. **Start the RAG API server:**
+   ```bash
+   python3 rag_server.py
+   ```
+   Server runs at `http://localhost:5001`
+
+2. **Configure Open WebUI:**
+   - Go to **Settings** → **Connections**
+   - Add OpenAI API connection:
+     - **URL**: `http://localhost:5001/v1`
+     - **API Key**: `any-value` (not validated)
+
+3. **Select `localrag` model** in the chat dropdown
+
+Now all your chats in Open WebUI will use RAG with your local documents!
+
+---
+
+## 🚀 Future Extensions
 
 | Extension | Description |
 |-----------|-------------|
-| **Web UI** | Add a Flask/FastAPI server with a chat interface |
 | **Scheduled Ingestion** | Use cron or Task Scheduler for automatic updates |
 | **Multiple Collections** | Separate vector stores for different knowledge domains |
 | **Hybrid Search** | Combine semantic search with keyword matching (BM25) |
 | **Conversation Memory** | Add chat history for multi-turn conversations |
 | **Larger Models** | Use Llama 70B or Mixtral for improved reasoning |
-| **Document Versioning** | Track document changes over time |
-| **Export/Backup** | Export conversations and citations to Markdown |
 
 ---
 
